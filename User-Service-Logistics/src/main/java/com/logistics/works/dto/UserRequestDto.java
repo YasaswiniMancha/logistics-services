@@ -1,11 +1,12 @@
-package com.logistics.services.dto;
+package com.logistics.works.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class SignupRequestDto {
+public class UserRequestDto {
+//for signup/update
 	
    @NotBlank
    private String username;

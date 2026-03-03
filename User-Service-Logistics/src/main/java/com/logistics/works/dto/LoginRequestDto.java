@@ -1,4 +1,4 @@
-package com.logistics.services.dto;
+package com.logistics.works.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.Data;
 public class LoginRequestDto {
 	
 	@NotBlank
-    private String usernameOrEmail;
+    private String username;
 	
 	@NotBlank
     private String password;
