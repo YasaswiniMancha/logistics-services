@@ -1,5 +1,5 @@
 package com.logistics.works.entity;
-public enum Role {
+public enum Roles {
     CUSTOMER,
     ADMIN,
     LOGISTICS_MANAGER

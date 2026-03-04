@@ -10,13 +10,14 @@ import com.logistics.works.dto.UserRequestDto;
 import com.logistics.works.dto.UserResponseDto;
 
 public interface UserService {
-    AuthResponseDto signup(UserRequestDto request);
-    
-    AuthResponseDto login(LoginRequestDto request);
-    
-    UserResponseDto getUserById(UUID userId);
-    
-    UserResponseDto updateuser(UUID userId, UserRequestDto request);
-    
-    void logout(String token);
+
+	AuthResponseDto signup(UserRequestDto request);
+
+	AuthResponseDto login(LoginRequestDto request);
+
+	UserResponseDto getUserById(UUID userId);
+
+	UserResponseDto updateuser(UUID userId, UserRequestDto request);
+
+	void logout(String token);
 }

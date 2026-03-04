@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.logistics.works.entity.User;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -34,19 +36,49 @@ public class JwtUtil {
 	}
 
 	public String generateToken(User user) {
-		Set<String> role = user.getRole()
-				.stream()
-				.map(Enum::name)
-				.collect(Collectors.toSet());
-        
+		Set<String> role = user.getRoles().stream().map(Enum::name).collect(Collectors.toSet());
+
+		return Jwts.builder().setSubject(user.getUsername()).claim("role", role)
+				.claim("userId", user.getId().toString()).setIssuedAt(new Date())
+				.setExpiration(new Date(System.currentTimeMillis() + accessTokenExpiration))
+				.signWith(key, SignatureAlgorithm.HS256).compact();
+
+	}
+
+	public String refreshToken(User user) {
 		return Jwts.builder()
 				.setSubject(user.getUsername())
-				.claim("role", role)
-				.claim("userId", user.getId().toString())
 				.setIssuedAt(new Date())
-				.setExpiration(new Date(System.currentTimeMillis()+accessTokenExpiration))
+				.setExpiration(new Date(System.currentTimeMillis() + refreshTokenExpiration))
 				.signWith(key, SignatureAlgorithm.HS256)
 				.compact();
-		
 	}
+	
+	
+	private Claims extractAllClaims(String token) {
+		return Jwts.parserBuilder()
+				.setSigningKey(key)
+				.build()
+				.parseClaimsJwt(token)
+				.getBody();
+	}
+	
+	public String extractUsername(String token) {
+		 return extractAllClaims(token).getSubject();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Set<String> extractRoles(String token){
+		return (Set<String>) extractAllClaims(token).get("roles");
+	}
+	
+	public boolean validateToken(String token) {
+		try {
+			extractAllClaims(token);
+			return true;
+		} catch(JwtException | IllegalArgumentException e) {
+			return false;
+		}
+	}
+	
 }

@@ -64,7 +64,7 @@ public class User {
 	@CollectionTable(name="user_roles")
 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false, name="role")
-	private Set<Role> role = new HashSet<>();
+	private Set<Roles> roles = new HashSet<>();
 	
 	@Column(nullable=false)
 	private LocalDateTime createdAt;
