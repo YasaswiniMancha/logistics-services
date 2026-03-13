@@ -1,5 +1,6 @@
 package com.logistics.services.contracts.kafka.event;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.logistics.services.contracts.kafka.event.base.BaseEvent;
@@ -17,10 +18,15 @@ import lombok.Setter;
 @Builder
 public class PaymentCompletedEvent extends BaseEvent {
 
-    private UUID paymentId;
+	private UUID eventId;
+	private String eventType;
+	private String sourceService;
+	private LocalDateTime timestamp;
 
-    private UUID orderId;
+	private UUID paymentId;
 
-    private Double amount;
+	private UUID orderId;
+
+	private Double amount;
 
 }

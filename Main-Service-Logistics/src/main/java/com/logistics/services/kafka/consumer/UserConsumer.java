@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.logistics.services.contracts.kafka.event.UserCreatedEvent;
 
 @Service
-public class UserEventConsumer {
+public class UserConsumer {
 
     @KafkaListener(
         topics = "user-created-topic",
