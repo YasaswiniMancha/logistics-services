@@ -67,10 +67,10 @@
 
     <!-- MapStruct -->
     <dependency>
-        <groupId>org.mapstruct</groupId>
-        <artifactId>mapstruct</artifactId>
-        <version>${mapstruct.version}</version>
-    </dependency>
+       <groupId>org.mapstruct</groupId>
+       <artifactId>mapstruct</artifactId>
+       <version>1.6.3</version>
+   </dependency>
 
     <!-- PostgreSQL -->
     <dependency>
@@ -128,6 +128,11 @@
         <scope>test</scope>
     </dependency>
 
+    <dependency>
+    	<groupId>com.logistics.services</groupId>
+    	<artifactId>Main-Service-Logistics</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
 </dependencies>
 
 <build>

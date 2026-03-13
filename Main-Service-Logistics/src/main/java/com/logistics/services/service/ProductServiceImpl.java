@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.logistics.services.dto.ProductRequestDto;
 import com.logistics.services.dto.ProductResponseDto;
 import com.logistics.services.entity.Product;
+import com.logistics.services.exceptions.ProductNotFoundException;
 import com.logistics.services.mapper.ProductMapper;
 import com.logistics.services.repository.ProductRepository;
-import com.logistics.services.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductResponseDto getProduct(UUID productId) {
 
         Product product = productRepo.findById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException("Product not found"));
 
         return productMapper.toDto(product);
     }

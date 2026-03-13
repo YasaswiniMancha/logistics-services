@@ -1,10 +1,10 @@
-package com.logistics.works.kafka.event.producer;
+package com.logistics.works.kafka;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.logistics.works.kafka.event.UserCreatedEventDto;
+import com.logistics.services.kafka.event.UserCreatedEvent;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,16 +17,11 @@ public class UserEventProducer {
 	 @Value("${app.kafka.topic.user-created}")
 	 private String topic;
 	 
-	public void publishUserCreatedEvent(UserCreatedEventDto event) {
+	public void publishUserCreatedEvent(UserCreatedEvent event) {
 		kafkaTemplate.send(topic, 
 				event.getId().toString(),  // message key
 				event);
 	}
 	
-	/*
-      Why key is important:
-      same userId → same partition
-      maintains ordering
-      improves consumer performance
-    */
 }
+

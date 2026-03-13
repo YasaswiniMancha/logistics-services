@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.logistics.services.dto.OrderRequestDto;
 import com.logistics.services.dto.OrderResponseDto;
 import com.logistics.services.entity.Order;
+import com.logistics.services.exceptions.OrderNotFoundException;
 import com.logistics.services.mapper.OrderMapper;
 import com.logistics.services.repository.OrderRepository;
 
@@ -30,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public OrderResponseDto getOrderById(UUID orderId) {
-		Order order = orderRepository.findById(orderId).orElseThrow(()-> new RuntimeException("Order not found "));
+		Order order = orderRepository.findById(orderId).orElseThrow(()-> new OrderNotFoundException("Order not found") );
 		return orderMapper.toResponseDto(order);
 		
 	}
