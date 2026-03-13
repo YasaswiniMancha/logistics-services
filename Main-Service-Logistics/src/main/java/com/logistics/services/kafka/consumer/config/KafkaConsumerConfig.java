@@ -1,4 +1,4 @@
-package com.logistics.services.kafka.config;
+package com.logistics.services.kafka.consumer.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
 import org.springframework.kafka.support.serializer.JacksonJsonSerializer;
 
-import com.logistics.services.kafka.event.UserCreatedEvent;
+import com.logistics.services.contracts.kafka.event.UserCreatedEvent;
 
 @Configuration
 public class KafkaConsumerConfig {

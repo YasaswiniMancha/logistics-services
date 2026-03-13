@@ -1,4 +1,4 @@
-package com.logistics.services.kafka.event.base;
+package com.logistics.services.contracts.kafka.event.base;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,5 +19,5 @@ public abstract class BaseEvent {
     private String sourceService;
 
     private LocalDateTime timestamp;
-
+//Common metadata for all Kafka events
 }

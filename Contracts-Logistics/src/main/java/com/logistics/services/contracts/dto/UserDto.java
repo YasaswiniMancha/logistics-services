@@ -1,4 +1,4 @@
-package com.logistics.services.dto;
+package com.logistics.services.contracts.dto;
 
 import java.util.UUID;
 

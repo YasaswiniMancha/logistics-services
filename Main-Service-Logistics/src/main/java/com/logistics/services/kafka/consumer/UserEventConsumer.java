@@ -1,9 +1,9 @@
-package com.logistics.services.kafka;
+package com.logistics.services.kafka.consumer;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.logistics.services.kafka.event.UserCreatedEvent;
+import com.logistics.services.contracts.kafka.event.UserCreatedEvent;
 
 @Service
 public class UserEventConsumer {

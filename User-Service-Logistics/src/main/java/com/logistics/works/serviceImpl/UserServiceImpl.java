@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.logistics.services.kafka.event.UserCreatedEvent;
+import com.logistics.services.contracts.kafka.event.UserCreatedEvent;
 import com.logistics.works.dto.AuthRequestDto;
 import com.logistics.works.dto.AuthResponseDto;
 import com.logistics.works.dto.UserRequestDto;

@@ -1,8 +1,8 @@
-package com.logistics.services.kafka.event;
+package com.logistics.services.contracts.kafka.event;
 
 import java.util.UUID;
 
-import com.logistics.services.kafka.event.base.BaseEvent;
+import com.logistics.services.contracts.kafka.event.base.BaseEvent;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,12 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderCreatedEvent extends BaseEvent {
+public class OrderCancelledEvent extends BaseEvent {
 
     private UUID orderId;
-
-    private UUID userId;
-
-    private Double totalAmount;
 
 }

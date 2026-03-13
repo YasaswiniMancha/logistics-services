@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.logistics.services.kafka.event.UserCreatedEvent;
+import com.logistics.services.contracts.kafka.event.UserCreatedEvent;
 
 import lombok.RequiredArgsConstructor;
 
