@@ -31,8 +31,14 @@
 
     <modules>
         <module>Contracts-Logistics</module>
+        <module>Gateway-Service-Logistics</module>
         <module>User-Service-Logistics</module>
-        <module>Main-Service-Logistics</module>
+        <module>Product-Service-Logistics</module>
+        <module>Order-Service-Logistics</module>
+        <module>Inventory-Service-Logistics</module>
+        <module>Payment-Service-Logistics</module>
+        <module>Delivery-Service-Logistics</module>
+        <module>Notification-Service-Logistics</module>
     </modules>
 
 </project>
