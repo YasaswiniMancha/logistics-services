@@ -21,7 +21,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// com/logistics/orderservice/entity/Order.java
 @Entity
 @Table(name = "orders")
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
