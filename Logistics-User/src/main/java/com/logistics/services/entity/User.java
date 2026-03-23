@@ -3,16 +3,21 @@ package com.logistics.services.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.logistics.services.contracts.entity.BaseEntity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -28,11 +33,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class User extends BaseEntity{
-	
+
 	@Column(unique=true, nullable=false)
 	private String email;
 	
-	 @Column(nullable = false)
+	@Column(nullable = false)
 	private String password;
 	
 	@Column(nullable = false)
@@ -44,9 +49,11 @@ public class User extends BaseEntity{
 	@Column(unique=true, nullable=false)
 	private String phone;
 	
-	@Enumerated(EnumType.STRING)
+	@ElementCollection(fetch=FetchType.EAGER)
 	@Column(nullable=false, name="role")
-	private Roles role;  
+	@Builder.Default
+	@CollectionTable(name="user_roles",joinColumns=@JoinColumn(name="user_id"))
+	private Set<Roles> roles = new HashSet<>();  
 	
 	@Column(nullable=false)
 	private LocalDateTime createdAt;
@@ -87,4 +94,11 @@ public class User extends BaseEntity{
 
 	@OneToOne(mappedBy = "user",  cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private RefreshToken refreshToken;
+	
+
+    // For OAuth2 users: "google", "github" — null for local users
+    private String provider;
+
+    // OAuth2 provider's user ID (Google sub, GitHub id)
+    private String providerId;
 }
