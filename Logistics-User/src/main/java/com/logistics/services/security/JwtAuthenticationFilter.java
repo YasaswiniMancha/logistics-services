@@ -78,7 +78,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // Ensures f
 			username = jwtUtil.extractUsername(token); // get email from JWT subject
 		}
 		
-		/*
+		/*Validate and set authentication
         Conditions to authenticate:
         1. Username must exist
         2. No authentication already set
@@ -111,12 +111,40 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // Ensures f
             //   credentials = null (already verified via JWT — no password needed)
             //   authorities = GrantedAuthority list built from JWT roles
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-					userDetails, null, userDetails.getAuthorities());
+					userDetails, null, authorities);
 			
 			 // Step 7: Attach request metadata (IP address, session ID)
             // Used for audit logging and suspicious activity detection
-			authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); // Attach request-specific details (IP address, session id)
+			authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); 
 			
+			
+			//SecurityContextHolder stores authenticated user for current thread
+
+			/* Step-by-step:
+
+			Every request comes in.
+
+			It checks for Authorization header.
+
+			Extracts JWT.
+
+			Validates:
+
+			Not expired
+
+			Signature correct
+
+			Not blacklisted
+
+			Loads user from DB.
+
+			Creates Authentication object.
+
+			Stores it in SecurityContext.
+
+			Allows request to proceed.
+
+			*/
 			   // Step 8: Store in SecurityContextHolder
             // SecurityContextHolder is ThreadLocal — holds auth for current request thread
             // All subsequent code in this request can call:
@@ -136,30 +164,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // Ensures f
 	}
 }
 
-//SecurityContextHolder stores authenticated user for current thread
 
-/* Step-by-step:
-
-Every request comes in.
-
-It checks for Authorization header.
-
-Extracts JWT.
-
-Validates:
-
-Not expired
-
-Signature correct
-
-Not blacklisted
-
-Loads user from DB.
-
-Creates Authentication object.
-
-Stores it in SecurityContext.
-
-Allows request to proceed.
-
-*/
